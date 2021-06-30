@@ -9,8 +9,8 @@ const {sendWelcomeEmail,sendCancelationEmail } = require('../emails/account');
 //Sign Up
 router.post('/users', async (req, res) => {
     const user = new User(req.body);
-    try {
 
+    try {
         await user.save();
         sendWelcomeEmail(user.email,user.name);
         const token = await user.generateToken();
